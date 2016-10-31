@@ -129,6 +129,19 @@
       return WithFoo;
     }
     ```
+
+  - **属性命名**: 避免使用DOM相关的属性来用作其他的用途。
+
+  > 为什么？对于`style` 和 `className`这样的属性名，我们都会默认它们代表一些特殊的含义，如元素的样式，CSS class的名称。在你的应用中使用这些属性来表示其他的含义会使你的代码更难阅读，更难维护，并且可能会引起bug。
+
+    ```jsx
+    // bad
+    <MyComponent style="fancy" />
+
+    // good
+    <MyComponent variant="fancy" />
+    ```
+
 ## Declaration 声明模块
 
   - 不要使用 `displayName` 来命名React模块，而是使用引用来命名模块， 如 class 名称.
@@ -195,7 +208,7 @@
 
 ## Spacing 空格
 
-  - 总是在自动关闭的标签前加一个空格，正常情况下也不需要换行.
+  - 总是在自动关闭的标签前加一个空格，正常情况下也不需要换行. eslint: [`no-multi-spaces`](http://eslint.org/docs/rules/no-multi-spaces), [`react/jsx-space-before-closing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-space-before-closing.md)
 
     ```jsx
     // bad
@@ -452,6 +465,7 @@
     ```
 
   - 在React模块中，不要给所谓的私有函数添加 `_` 前缀，本质上它并不是私有的.
+  > 为什么？`_` 下划线前缀在某些语言中通常被用来表示私有变量或者函数。但是不像其他的一些语言，在JS中没有原生支持所谓的私有变量，所有的变量函数都是共有的。尽管你的意图是使它私有化，在之前加上下划线并不会使这些变量私有化，并且所有的属性（包括有下划线前缀及没有前缀的）都应该被视为是共有的。了解更多详情请查看Issue [#1024](https://github.com/airbnb/javascript/issues/1024), 和 [#490](https://github.com/airbnb/javascript/issues/490) 。
 
     ```jsx
     // bad
@@ -473,7 +487,7 @@
     }
     ```
 
-  - 在 `render` 方法中总是确保 `return` 返回值. eslint: [`require-render-return`](https://github.com/yannickcr/eslint-plugin-react/pull/502)
+  - Be sure to return a value in your `render` methods. eslint: [`react/require-render-return`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-render-return.md)
 
     ```jsx
     // bad
