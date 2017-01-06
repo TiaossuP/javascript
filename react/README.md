@@ -187,10 +187,9 @@
 
 ## Quotes 单引号还是双引号
 
-  - 对于JSX属性值总是使用双引号(`"`), 其他均使用单引号. eslint: [`jsx-quotes`](http://eslint.org/docs/rules/jsx-quotes)
+  - 对于JSX属性值总是使用双引号(`"`), 其他均使用单引号(`'`). eslint: [`jsx-quotes`](http://eslint.org/docs/rules/jsx-quotes)
 
-  > 为什么? JSX属性 [不能包括转译的引号](http://eslint.org/docs/rules/jsx-quotes), 因此在双引号里包括像 `"don't"` 的属性值更容易输入.
-  > HTML属性也是用双引号，所以JSX属性也遵循同样的语法.
+  > 为什么? HTML属性也是用双引号, 因此JSX的属性也遵循此约定.
 
     ```jsx
     // bad
@@ -338,6 +337,35 @@
     />
   ))}
   ```
+  
+  - 对于所有非必须的属性，总是手动去定义`defaultProps`属性.
+
+  > 为什么? propTypes 可以作为模块的文档说明, 并且声明 defaultProps 的话意味着阅读代码的人不需要去假设一些默认值。更重要的是, 显示的声明默认属性可以让你的模块跳过属性类型的检查.
+
+  ```jsx
+  // bad
+  function SFC({ foo, bar, children }) {
+    return <div>{foo}{bar}{children}</div>;
+  }
+  SFC.propTypes = {
+    foo: PropTypes.number.isRequired,
+    bar: PropTypes.string,
+    children: PropTypes.node,
+  };
+
+  // good
+  function SFC({ foo, bar }) {
+    return <div>{foo}{bar}</div>;
+  }
+  SFC.propTypes = {
+    foo: PropTypes.number.isRequired,
+    bar: PropTypes.string,
+  };
+  SFC.defaultProps = {
+    bar: '',
+    children: null,
+  };
+  ```
 
 ## Refs
 
@@ -351,7 +379,7 @@
 
     // good
     <Foo
-      ref={ref => { this.myRef = ref; }}
+      ref={(ref) => { this.myRef = ref; }}
     />
     ```
 
