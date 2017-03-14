@@ -6,6 +6,7 @@
 
   1. [基本规范](#basic-rules-基本规范)
   1. [Class vs React.createClass vs stateless](#创建模块)
+  1. [Mixins](#mixins)
   1. [命名](#naming-命名)
   1. [声明模块](#declaration-声明模块)
   1. [代码对齐](#alignment-代码对齐)
@@ -29,7 +30,7 @@
 ## 创建模块
    Class vs React.createClass vs stateless  
 
-  - 如果你的模块有内部状态或者是`refs`, 推荐使用 `class extends React.Component` 而不是 `React.createClass` ,除非你有充足的理由来使用这些方法.   
+  - 如果你的模块有内部状态或者是`refs`, 推荐使用 `class extends React.Component` 而不是 `React.createClass`.
   eslint: [`react/prefer-es6-class`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md) [`react/prefer-stateless-function`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md)
 
     ```jsx
@@ -70,6 +71,12 @@
       return <div>{hello}</div>;
     }
     ```
+
+## Mixins
+
+  - [不要使用 mixins](https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.html).
+
+  > 为什么? Mixins 会增加隐式的依赖，导致命名冲突，并且会以雪球式增加复杂度。在大多数情况下Mixins可以被更好的方法替代，如：组件化，高阶组件，工具模块等。
 
 ## Naming 命名
 
@@ -360,6 +367,7 @@
   SFC.propTypes = {
     foo: PropTypes.number.isRequired,
     bar: PropTypes.string,
+    children: PropTypes.node,
   };
   SFC.defaultProps = {
     bar: '',
@@ -386,7 +394,7 @@
 
 ## Parentheses 括号
 
-  - 将多行的JSX标签写在 `()`里. eslint: [`react/wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/wrap-multilines.md)
+  - 将多行的JSX标签写在 `()`里. eslint: [`react/jsx-wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md)
 
     ```jsx
     // bad
