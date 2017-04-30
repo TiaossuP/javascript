@@ -17,7 +17,7 @@
   10. [括号](#parentheses-括号)
   11. [标签](#tags-标签)
   12. [函数/方法](#methods-函数)
-  13. [Component 内各方法的放置顺序](#Component 内各方法的放置顺序)
+  13. [Component 内各方法的放置顺序](#component-内各方法的放置顺序)
   14. [isMounted](#ismounted)
 
 ## Basic Rules 基本规范
@@ -81,8 +81,8 @@
 ## Naming 命名
 
 -   **扩展名**: React模块使用 `.jsx` 扩展名.
--   **文件名**: 文件名使用帕斯卡命名. 如, `ReservationCard.jsx`.
--   **引用命名**: React模块名使用帕斯卡命名，实例使用骆驼式命名. eslint: [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md)
+- **文件名**: 文件名使用帕斯卡命名. 如, `ReservationCard.jsx`.
+- **引用命名**: React模块名使用帕斯卡命名，实例使用骆驼式命名. eslint: [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md)
 
     ```jsx
     // bad
