@@ -17,7 +17,7 @@
   10. [括号](#parentheses-括号)
   11. [标签](#tags-标签)
   12. [函数/方法](#methods-函数)
-  13. [模块生命周期](#ordering-react-模块生命周期)
+  13. [Component 内各方法的放置顺序](#Component 内各方法的放置顺序)
   14. [isMounted](#ismounted)
 
 ## Basic Rules 基本规范
@@ -537,7 +537,7 @@
     }
     ```
 
-## Ordering React 模块生命周期
+## Component 内各方法的放置顺序
 
 -   `class extends React.Component` 的生命周期函数:
 
