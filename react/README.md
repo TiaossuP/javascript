@@ -6,31 +6,31 @@
 
   1. [基本规范](#basic-rules-基本规范)
   1. [Class vs React.createClass vs stateless](#创建模块)
-  1. [Mixins](#mixins)
-  1. [命名](#naming-命名)
-  1. [声明模块](#declaration-声明模块)
-  1. [代码对齐](#alignment-代码对齐)
-  1. [单引号还是双引号](#quotes-单引号还是双引号)
-  1. [空格](#spacing-空格)
-  1. [属性](#props-属性)
-  1. [Refs引用](#refs)
-  1. [括号](#parentheses-括号)
-  1. [标签](#tags-标签)
-  1. [函数/方法](#methods-函数)
-  1. [模块生命周期](#ordering-react-模块生命周期)
-  1. [isMounted](#ismounted)
+  2. [Mixins](#mixins)
+  3. [命名](#naming-命名)
+  4. [声明模块](#declaration-声明模块)
+  5. [代码对齐](#alignment-代码对齐)
+  6. [单引号还是双引号](#quotes-单引号还是双引号)
+  7. [空格](#spacing-空格)
+  8. [属性](#props-属性)
+  9. [Refs引用](#refs)
+  10. [括号](#parentheses-括号)
+  11. [标签](#tags-标签)
+  12. [函数/方法](#methods-函数)
+  13. [模块生命周期](#ordering-react-模块生命周期)
+  14. [isMounted](#ismounted)
 
 ## Basic Rules 基本规范
 
-  - 每个文件只写一个模块.
+- 每个文件只写一个模块.
     - 但是多个[无状态模块](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions)可以放在单个文件中. eslint: [`react/no-multi-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md#ignorestateless).
-  - 推荐使用JSX语法.
+- 推荐使用JSX语法.
   - 不要使用 `React.createElement`，除非从一个非JSX的文件中初始化你的app.
 
 ## 创建模块
    Class vs React.createClass vs stateless  
 
-  - 如果你的模块有内部状态或者是`refs`, 推荐使用 `class extends React.Component` 而不是 `React.createClass`.
+-   如果你的模块有内部状态或者是`refs`, 推荐使用 `class extends React.Component` 而不是 `React.createClass`.
   eslint: [`react/prefer-es6-class`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md) [`react/prefer-stateless-function`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md)
 
     ```jsx
@@ -74,15 +74,15 @@
 
 ## Mixins
 
-  - [不要使用 mixins](https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.html).
+-   [不要使用 mixins](https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.html).
 
   > 为什么? Mixins 会增加隐式的依赖，导致命名冲突，并且会以雪球式增加复杂度。在大多数情况下Mixins可以被更好的方法替代，如：组件化，高阶组件，工具模块等。
 
 ## Naming 命名
 
-  - **扩展名**: React模块使用 `.jsx` 扩展名.
-  - **文件名**: 文件名使用帕斯卡命名. 如, `ReservationCard.jsx`.
-  - **引用命名**: React模块名使用帕斯卡命名，实例使用骆驼式命名. eslint: [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md)
+-   **扩展名**: React模块使用 `.jsx` 扩展名.
+-   **文件名**: 文件名使用帕斯卡命名. 如, `ReservationCard.jsx`.
+-   **引用命名**: React模块名使用帕斯卡命名，实例使用骆驼式命名. eslint: [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md)
 
     ```jsx
     // bad
@@ -98,7 +98,7 @@
     const reservationItem = <ReservationCard />;
     ```
 
-  - **模块命名**: 模块使用当前文件名一样的名称. 比如 `ReservationCard.jsx` 应该包含名为 `ReservationCard`的模块. 但是，如果整个文件夹是一个模块，使用 `index.js`作为入口文件，然后直接使用 `index.js` 或者文件夹名作为模块的名称:
+- **模块命名**: 模块使用当前文件名一样的名称. 比如 `ReservationCard.jsx` 应该包含名为 `ReservationCard`的模块. 但是，如果整个文件夹是一个模块，使用 `index.js`作为入口文件，然后直接使用 `index.js` 或者文件夹名作为模块的名称:
 
     ```jsx
     // bad
@@ -110,7 +110,7 @@
     // good
     import Footer from './Footer';
     ```
-  - **高阶模块命名**: 对于生成一个新的模块，其中的模块名 `displayName` 应该为高阶模块名和传入模块名的组合. 例如, 高阶模块 `withFoo()`, 当传入一个 `Bar` 模块的时候， 生成的模块名 `displayName` 应该为 `withFoo(Bar)`.
+- **高阶模块命名**: 对于生成一个新的模块，其中的模块名 `displayName` 应该为高阶模块名和传入模块名的组合. 例如, 高阶模块 `withFoo()`, 当传入一个 `Bar` 模块的时候， 生成的模块名 `displayName` 应该为 `withFoo(Bar)`.
 
   > 为什么？一个模块的 `displayName` 可能会在开发者工具或者错误信息中使用到，因此有一个能清楚的表达这层关系的值能帮助我们更好的理解模块发生了什么，更好的Debug.
 
@@ -151,7 +151,7 @@
 
 ## Declaration 声明模块
 
-  - 不要使用 `displayName` 来命名React模块，而是使用引用来命名模块， 如 class 名称.
+-   不要使用 `displayName` 来命名React模块，而是使用引用来命名模块， 如 class 名称.
 
     ```jsx
     // bad
@@ -167,7 +167,7 @@
 
 ## Alignment 代码对齐
 
-  - 遵循以下的JSX语法缩进/格式. eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
+-   遵循以下的JSX语法缩进/格式. eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
 
     ```jsx
     // bad
@@ -194,7 +194,7 @@
 
 ## Quotes 单引号还是双引号
 
-  - 对于JSX属性值总是使用双引号(`"`), 其他均使用单引号(`'`). eslint: [`jsx-quotes`](http://eslint.org/docs/rules/jsx-quotes)
+-   对于JSX属性值总是使用双引号(`"`), 其他均使用单引号(`'`). eslint: [`jsx-quotes`](http://eslint.org/docs/rules/jsx-quotes)
 
   > 为什么? HTML属性也是用双引号, 因此JSX的属性也遵循此约定.
 
@@ -214,7 +214,7 @@
 
 ## Spacing 空格
 
-  - 总是在自动关闭的标签前加一个空格，正常情况下也不需要换行. eslint: [`no-multi-spaces`](http://eslint.org/docs/rules/no-multi-spaces), [`react/jsx-space-before-closing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-space-before-closing.md)
+-   总是在自动关闭的标签前加一个空格，正常情况下也不需要换行. eslint: [`no-multi-spaces`](http://eslint.org/docs/rules/no-multi-spaces), [`react/jsx-space-before-closing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-space-before-closing.md)
 
     ```jsx
     // bad
@@ -231,7 +231,7 @@
     <Foo />
     ```
 
-  - 不要在JSX `{}` 引用括号里两边加空格. eslint: [`react/jsx-curly-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md)
+- 不要在JSX `{}` 引用括号里两边加空格. eslint: [`react/jsx-curly-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md)
 
     ```jsx
     // bad
@@ -243,7 +243,7 @@
 
 ## Props 属性
 
-  - JSX属性名使用骆驼式风格`camelCase`.
+-   JSX属性名使用骆驼式风格`camelCase`.
 
     ```jsx
     // bad
@@ -259,7 +259,7 @@
     />
     ```
 
-  - 如果属性值为 `true`, 可以直接省略. eslint: [`react/jsx-boolean-value`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md)
+- 如果属性值为 `true`, 可以直接省略. eslint: [`react/jsx-boolean-value`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md)
 
     ```jsx
     // bad
@@ -273,7 +273,7 @@
     />
     ```
 
-  - `<img>` 标签总是添加 `alt` 属性. 如果图片以presentation(感觉是以类似PPT方式显示?)方式显示，`alt` 可为空, 或者`<img>` 要包含`role="presentation"`. eslint: [`jsx-a11y/img-has-alt`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/img-has-alt.md)
+- `<img>` 标签总是添加 `alt` 属性. 如果图片以presentation(感觉是以类似PPT方式显示?)方式显示，`alt` 可为空, 或者`<img>` 要包含`role="presentation"`. eslint: [`jsx-a11y/img-has-alt`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/img-has-alt.md)
 
     ```jsx
     // bad
@@ -289,7 +289,7 @@
     <img src="hello.jpg" role="presentation" />
     ```
 
-  - 不要在 `alt` 值里使用如 "image", "photo", or "picture"包括图片含义这样的词， 中文也一样. eslint: [`jsx-a11y/img-redundant-alt`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/img-redundant-alt.md)
+- 不要在 `alt` 值里使用如 "image", "photo", or "picture"包括图片含义这样的词， 中文也一样. eslint: [`jsx-a11y/img-redundant-alt`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/img-redundant-alt.md)
 
   > 为什么? 屏幕助读器已经把 `img` 标签标注为图片了, 所以没有必要再在 `alt` 里说明了.
 
@@ -344,7 +344,7 @@
     />
   ))}
   ```
-  
+
   - 对于所有非必须的属性，总是手动去定义`defaultProps`属性.
 
   > 为什么? propTypes 可以作为模块的文档说明, 并且声明 defaultProps 的话意味着阅读代码的人不需要去假设一些默认值。更重要的是, 显示的声明默认属性可以让你的模块跳过属性类型的检查.
@@ -377,7 +377,7 @@
 
 ## Refs
 
-  - 总是在Refs里使用回调函数. eslint: [`react/no-string-refs`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-string-refs.md)
+-   总是在Refs里使用回调函数. eslint: [`react/no-string-refs`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-string-refs.md)
 
     ```jsx
     // bad
@@ -394,7 +394,7 @@
 
 ## Parentheses 括号
 
-  - 将多行的JSX标签写在 `()`里. eslint: [`react/jsx-wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md)
+-   将多行的JSX标签写在 `()`里. eslint: [`react/jsx-wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md)
 
     ```jsx
     // bad
@@ -422,7 +422,7 @@
 
 ## Tags 标签
 
-  - 对于没有子元素的标签来说总是自己关闭标签. eslint: [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md)
+-   对于没有子元素的标签来说总是自己关闭标签. eslint: [`react/self-closing-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md)
 
     ```jsx
     // bad
@@ -432,7 +432,7 @@
     <Foo className="stuff" />
     ```
 
-  - 如果模块有多行的属性， 关闭标签时新建一行. eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
+- 如果模块有多行的属性， 关闭标签时新建一行. eslint: [`react/jsx-closing-bracket-location`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md)
 
     ```jsx
     // bad
@@ -449,7 +449,7 @@
 
 ## Methods 函数
 
-  - 使用箭头函数来获取本地变量.
+-   使用箭头函数来获取本地变量.
 
     ```jsx
     function ItemList(props) {
@@ -466,7 +466,7 @@
     }
     ```
 
-  - 当在 `render()` 里使用事件处理方法时，提前在构造函数里把 `this` 绑定上去. eslint: [`react/jsx-no-bind`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+- 当在 `render()` 里使用事件处理方法时，提前在构造函数里把 `this` 绑定上去. eslint: [`react/jsx-no-bind`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
 
   > 为什么? 在每次 `render` 过程中， 再调用 `bind` 都会新建一个新的函数，浪费资源.
 
@@ -539,22 +539,22 @@
 
 ## Ordering React 模块生命周期
 
-  - `class extends React.Component` 的生命周期函数:
+-   `class extends React.Component` 的生命周期函数:
 
   1. 可选的 `static` 方法
-  1. `constructor` 构造函数
-  1. `getChildContext` 获取子元素内容
-  1. `componentWillMount` 模块渲染前
-  1. `componentDidMount` 模块渲染后
-  1. `componentWillReceiveProps` 模块将接受新的数据
-  1. `shouldComponentUpdate` 判断模块需不需要重新渲染
-  1. `componentWillUpdate` 上面的方法返回 `true`， 模块将重新渲染
-  1. `componentDidUpdate` 模块渲染结束
-  1. `componentWillUnmount` 模块将从DOM中清除, 做一些清理任务
-  1. *点击回调或者事件处理器* 如 `onClickSubmit()` 或 `onChangeDescription()`
-  1. *`render` 里的 getter 方法* 如 `getSelectReason()` 或 `getFooterContent()`
-  1. *可选的 render 方法* 如 `renderNavigation()` 或 `renderProfilePicture()`
-  1. `render` render() 方法
+  2. `constructor` 构造函数
+  3. `getChildContext` 获取子元素内容
+  4. `componentWillMount` 模块渲染前
+  5. `componentDidMount` 模块渲染后
+  6. `componentWillReceiveProps` 模块将接受新的数据
+  7. `shouldComponentUpdate` 判断模块需不需要重新渲染
+  8. `componentWillUpdate` 上面的方法返回 `true`， 模块将重新渲染
+  9. `componentDidUpdate` 模块渲染结束
+  10. `componentWillUnmount` 模块将从DOM中清除, 做一些清理任务
+  11. *点击回调或者事件处理器* 如 `onClickSubmit()` 或 `onChangeDescription()`
+  12. *`render` 里的 getter 方法* 如 `getSelectReason()` 或 `getFooterContent()`
+  13. *可选的 render 方法* 如 `renderNavigation()` 或 `renderProfilePicture()`
+  14. `render` render() 方法
 
   - 如何定义 `propTypes`, `defaultProps`, `contextTypes`, 等等其他属性...
 
@@ -590,30 +590,30 @@
   - `React.createClass` 的生命周期函数，与使用class稍有不同: eslint: [`react/sort-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md)
 
   1. `displayName` 设定模块名称
-  1. `propTypes` 设置属性的类型
-  1. `contextTypes` 设置上下文类型
-  1. `childContextTypes` 设置子元素上下文类型
-  1. `mixins` 添加一些mixins
-  1. `statics`
-  1. `defaultProps` 设置默认的属性值
-  1. `getDefaultProps` 获取默认属性值
-  1. `getInitialState` 或者初始状态
-  1. `getChildContext`
-  1. `componentWillMount`
-  1. `componentDidMount`
-  1. `componentWillReceiveProps`
-  1. `shouldComponentUpdate`
-  1. `componentWillUpdate`
-  1. `componentDidUpdate`
-  1. `componentWillUnmount`
-  1. *clickHandlers or eventHandlers* like `onClickSubmit()` or `onChangeDescription()`
-  1. *getter methods for `render`* like `getSelectReason()` or `getFooterContent()`
-  1. *Optional render methods* like `renderNavigation()` or `renderProfilePicture()`
-  1. `render`
+  2. `propTypes` 设置属性的类型
+  3. `contextTypes` 设置上下文类型
+  4. `childContextTypes` 设置子元素上下文类型
+  5. `mixins` 添加一些mixins
+  6. `statics`
+  7. `defaultProps` 设置默认的属性值
+  8. `getDefaultProps` 获取默认属性值
+  9. `getInitialState` 或者初始状态
+  10. `getChildContext`
+  11. `componentWillMount`
+  12. `componentDidMount`
+  13. `componentWillReceiveProps`
+  14. `shouldComponentUpdate`
+  15. `componentWillUpdate`
+  16. `componentDidUpdate`
+  17. `componentWillUnmount`
+  18. *clickHandlers or eventHandlers* like `onClickSubmit()` or `onChangeDescription()`
+  19. *getter methods for `render`* like `getSelectReason()` or `getFooterContent()`
+  20. *Optional render methods* like `renderNavigation()` or `renderProfilePicture()`
+  21. `render`
 
 ## isMounted
 
-  - 不要再使用 `isMounted`. eslint: [`react/no-is-mounted`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md)
+-   不要再使用 `isMounted`. eslint: [`react/no-is-mounted`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md)
 
   > 为什么? [`isMounted` 反人类设计模式:()][anti-pattern], 在 ES6 classes 中无法使用， 官方将在未来的版本里删除此方法.
 
